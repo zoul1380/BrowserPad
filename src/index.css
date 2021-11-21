@@ -1,0 +1,20 @@
+.PadArea {
+    color: #61dafb;
+    font-size: 42px;
+    background-color: black;
+    left: 10;
+    width: 500px;
+    height: 500px;
+    float: left;
+    background-image: linear-gradient(
+        180deg,
+        #352c42 3.85%,
+        #000000 3.85%,
+        #000000 50%,
+        #352c42 50%,
+        #352c42 53.85%,
+        #000000 53.85%,
+        #000000 100%
+    );
+    background-size: 26px 26px;
+}
