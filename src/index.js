@@ -1,6 +1,7 @@
+import react from "../node_modules/react";
 import React, { useState, useLayoutEffect } from "../node_modules/react";
 import ReactDOM from "../node_modules/react-dom";
-import style from "./index.css";
+import "./index.css";
 
 function LocalSave(props) {
     const [getName, setName] = useState(props.savename);
@@ -29,12 +30,58 @@ function BrowserPad(props) {
     };
 
     return (
-        <textarea
-            className='PadArea'
-            id='Padbrowser'
-            value={getContent}
-            onChange={handleChange}
-        />
+        <div>
+            <textarea
+                className='PadArea'
+                id='Padbrowser'
+                value={getContent}
+                onChange={handleChange}
+            />
+
+            <ButtonSave note={getContent} />
+        </div>
+    );
+}
+
+const handleSaveClick = (e) => {
+    var blob = new Blob([e.target.value], { type: "text/json" }),
+        e = document.createEvent("MouseEvents"),
+        a = document.createElement("a");
+
+    a.download = "notes.txt";
+    a.href = window.URL.createObjectURL(blob);
+    a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
+    e.initMouseEvent(
+        "click",
+        true,
+        false,
+        window,
+        0,
+        0,
+        0,
+        0,
+        0,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null
+    );
+    a.dispatchEvent(e);
+};
+
+function ButtonSave(props) {
+    return (
+        <react.Fragment>
+            <button
+                className='savebutton'
+                onClick={handleSaveClick}
+                value={props.note}
+            >
+                Save
+            </button>
+        </react.Fragment>
     );
 }
 
