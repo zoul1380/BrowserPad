@@ -47,7 +47,6 @@ const handleSaveClick = (e) => {
     var blob = new Blob([e.target.value], { type: "text/json" }),
         e = document.createEvent("MouseEvents"),
         a = document.createElement("a");
-
     a.download = "notes.txt";
     a.href = window.URL.createObjectURL(blob);
     a.dataset.downloadurl = ["text/json", a.download, a.href].join(":");
@@ -84,6 +83,16 @@ function ButtonSave(props) {
         </react.Fragment>
     );
 }
+
+const LocalSaveWithName = (props) => {
+    return (
+        <LocalSave
+            savename={props.savename}
+            onChange={props.onChange}
+            value={props.value}
+        />
+    );
+};
 
 class MainCanvas extends React.Component {
     render() {
